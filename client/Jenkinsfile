@@ -1,0 +1,68 @@
+def BuildAndCopyMibsHere(branch, credentials, project_folder, content) {
+    sh "rm -r -f " + project_folder
+    withCredentials([string(credentialsId: credentials, variable: 'gitea_token')]) {
+        sh "git clone --depth 1 -c http.sslVerify=false -b " + branch + " https://" + gitea_token + ":x-oauth-basic@gitea.gpapdev.cnag.eu/gitea/platform/" + project_folder + " " + project_folder
+        sh "cd " + project_folder + " && git fetch --all"
+        sh "cd " + project_folder + " && git config pull.rebase false"
+
+        try {
+            sh "cd " + project_folder + " && git pull origin " + branch
+        } catch (Exception e1) {
+            println(e1)
+        }
+
+        // Step 1: Remove all `main.X.js` and `main.X.js.map` files
+        sh "cd " + project_folder + " && find . -type f \\( -name \'main.*.js\' -or -name \'main.*.js.map\' \\) -delete"
+
+        // Step 2: Stage the deletions and commit them
+        sh "cd " + project_folder + " && git add -A"
+
+        try {
+            sh "cd " + project_folder + " && git commit -m 'Clean up old main.X.js files'"
+        } catch (Exception e) {
+            println("No changes to commit: ${e.getMessage()}")
+        }
+
+        // Step 3: Copy new content (if any) and commit the new files
+        if (content != null) {
+            sh "cp -r " + content + " " + project_folder + "/."
+
+            // Check for any new changes and commit them
+            sh "cd " + project_folder + " && if [ \$(git status --porcelain | wc -l) -gt 0 ]; then git add -A && git commit -m 'Latest build' && git push -f origin " + branch + "; else echo 'No changes to commit'; fi"
+        }
+    }
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('yarn install') {
+            steps {
+                nodejs(nodeJSInstallationName: 'nodejs25_2_1_yarn') {
+                    sh 'yarn install'
+                }
+            }
+        }
+        
+        stage('yarn build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'nodejs25_2_1_yarn') {
+                    sh 'rm -rf ./build/*'
+                    sh 'yarn build'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'build/**/*', fingerprint: true
+            sh 'rm -rf ./node_modules'
+        }
+        success {
+            BuildAndCopyMibsHere(env.BRANCH_NAME, 'gitea_apapakon_token', 'beacon_ui_artifact', 'build/*')
+        }
+    }
+}
+
