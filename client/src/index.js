@@ -45,36 +45,47 @@ import config from "./config/config.json";
 import "./index.css";
 
 // Builds the OIDC configuration using settings from config.json
+// Always returns a config object to ensure AuthProvider can be rendered
 function buildOidcConfig() {
   const ui = config.ui;
+  const loginEnabled = ui?.showLogin === true;
+  const auth = ui?.auth;
+  const oidc = auth?.oidc;
 
-  // If login is disabled, do not load AuthProvider
-  if (!ui?.showLogin) return null;
-
-  const auth = ui.auth;
-  if (!auth?.oidc) {
-    console.error("Login is enabled but auth.oidc is missing in config.json.");
-    return null;
+  // If login is disabled or oidc config is missing, build a safe no-op config from defaults
+  if (!loginEnabled || !oidc) {
+    // Use values from config.json if they exist, otherwise use safe defaults
+    return {
+      authority: oidc?.authority || window.location.origin,
+      clientId: oidc?.clientId || process.env.REACT_APP_CLIENT_ID || "disabled-client",
+      redirectUri: oidc?.redirectUri || window.location.origin,
+      responseType: oidc?.responseType || "code",
+      scope: oidc?.scope || "openid",
+      autoSignIn: false, // Always disabled when login is disabled
+      automaticSilentRenew: false, // Always disabled when login is disabled
+      revokeAccessTokenOnSignout: oidc?.revokeAccessTokenOnSignout || false,
+      onSignIn: async () => {
+        window.history.replaceState(null, "", "/login");
+      },
+    };
   }
 
-  const { providerType = "public", oidc } = auth;
+  const { providerType = "public" } = auth;
   const isPrivate = providerType === "private";
 
   // Prefer env variables; fallback to config
-  const clientId = process.env.REACT_APP_CLIENT_ID;
-  const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+  const clientId = process.env.REACT_APP_CLIENT_ID || oidc.clientId;
+  const clientSecret = process.env.REACT_APP_CLIENT_SECRET || (isPrivate ? oidc.clientSecret : undefined);
 
-  // Basic validation
+  // Warn if required fields are missing, but still build a config
   if (!clientId) {
-    console.error("clientId is required but was not found.");
-    return null;
+    console.warn("clientId is missing. Using fallback from config.json.");
   }
 
   if (isPrivate && !clientSecret) {
-    console.error(
-      "providerType is 'private' but no clientSecret was found. Both clientId and clientSecret are required."
+    console.warn(
+      "providerType is 'private' but no clientSecret was found. Authentication may not work."
     );
-    return null;
   }
 
   if (!isPrivate && clientSecret) {
@@ -83,35 +94,32 @@ function buildOidcConfig() {
     );
   }
 
-  // OIDC configuration passed to AuthProvider
+  // OIDC configuration passed to AuthProvider, always built from config.json
   return {
     onSignIn: async () => {
       window.history.replaceState(null, "", "/login");
     },
     authority: oidc.authority,
-    clientId,
-    ...(isPrivate ? { clientSecret } : {}),
-    autoSignIn: oidc.autoSignIn,
-    responseType: oidc.responseType,
-    automaticSilentRenew: oidc.automaticSilentRenew,
-    redirectUri: oidc.redirectUri,
-    scope: oidc.scope,
-    revokeAccessTokenOnSignout: oidc.revokeAccessTokenOnSignout,
+    clientId: clientId || oidc.clientId,
+    ...(isPrivate && clientSecret ? { clientSecret } : {}),
+    autoSignIn: oidc.autoSignIn ?? false,
+    responseType: oidc.responseType || "code",
+    automaticSilentRenew: oidc.automaticSilentRenew ?? true,
+    redirectUri: oidc.redirectUri || window.location.origin,
+    scope: oidc.scope || "openid",
+    revokeAccessTokenOnSignout: oidc.revokeAccessTokenOnSignout ?? true,
   };
 }
 
+// Always build config from config.json (never returns null)
 const oidcConfig = buildOidcConfig();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    {oidcConfig ? (
-      <AuthProvider {...oidcConfig}>
-        <App />
-      </AuthProvider>
-    ) : (
+    <AuthProvider {...oidcConfig}>
       <App />
-    )}
+    </AuthProvider>
   </React.StrictMode>
 );

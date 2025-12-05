@@ -6,6 +6,8 @@ import { COMMON_MESSAGES } from "../common/CommonMessage";
 import { PATH_SEGMENT_TO_ENTRY_ID } from "../../components/common/textFormatting";
 import { queryBuilder } from "./utils/queryBuilder";
 import { mockSingleBeaconResponse } from "./mockSingleBeaconResponse";
+import { useAuthSafe } from "../pages/login/useAuthSafe";
+
 
 const buildHeaders = (results = []) => {
   const headerSet = new Set();
@@ -21,7 +23,10 @@ const buildHeaders = (results = []) => {
 // sends a request to the Beacon API, handles grouping of results, and updates global state accordingly.
 // If no filters are applied and they are required, it shows an error message instead.
 export default function SearchButton({ setSelectedTool }) {
-  // Access shared state and updater functions from context
+  // Get authentication context to access JWT token
+  const auth = useAuthSafe();
+  
+    // Access shared state and updater functions from context
   const {
     selectedPathSegment,
     setLoadingData,
@@ -65,11 +70,21 @@ export default function SearchButton({ setSelectedTool }) {
     setQueryDirty(false);
 
     try {
+
+      // Get JWT token from Keycloak authentication
+      const token = auth?.userData?.access_token;
+    
+      // Build headers with authentication token if available
+      const headers = { "Content-Type": "application/json" };
+      if (token) {
+        headers["auth-key"] = token;
+      }
+      
       const url = `${config.apiUrl}/${selectedPathSegment}`;
       const query = queryBuilder(selectedFilter, entryTypeId);
       const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: headers,
         body: JSON.stringify(query),
       };
 
