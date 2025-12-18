@@ -40,7 +40,7 @@ pipeline {
         stage('yarn install') {
             steps {
                 nodejs(nodeJSInstallationName: 'nodejs25_2_1_yarn') {
-                    sh 'cd client && yarn install'
+                   sh 'cd client && CYPRESS_INSTALL_BINARY=0 yarn install'
                 }
             }
         }
