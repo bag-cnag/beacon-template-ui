@@ -57,11 +57,11 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'build/**/*', fingerprint: true
+            archiveArtifacts artifacts: 'client/build/**/*', fingerprint: true
             sh 'rm -rf ./node_modules'
         }
         success {
-            BuildAndCopyMibsHere(env.BRANCH_NAME, 'gitea_apapakon_token', 'beacon_ui_artifact', 'build/*')
+            BuildAndCopyMibsHere(env.BRANCH_NAME, 'gitea_apapakon_token', 'beacon_ui_artifact', 'client/build/*')
         }
     }
 }
