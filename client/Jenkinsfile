@@ -40,7 +40,7 @@ pipeline {
         stage('yarn install') {
             steps {
                 nodejs(nodeJSInstallationName: 'nodejs25_2_1_yarn') {
-                    sh 'yarn install'
+                    sh 'cd client && yarn install'
                 }
             }
         }
@@ -48,8 +48,8 @@ pipeline {
         stage('yarn build') {
             steps {
                 nodejs(nodeJSInstallationName: 'nodejs25_2_1_yarn') {
-                    sh 'rm -rf ./build/*'
-                    sh 'yarn build'
+                    sh 'cd client && rm -rf ./build/*'
+                    sh 'cd client && yarn build'
                 }
             }
         }
