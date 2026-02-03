@@ -7,7 +7,7 @@
 
 // const oidcConfig = {
 //   onSignIn: async () => {
-//     window.history.replaceState(null, "", "/login");
+//     window.history.replaceState(null, "", `${process.env.PUBLIC_URL || ""}/login`);
 //   },
 
 //   authority: "https://login.aai.lifescience-ri.eu/oidc",
@@ -65,7 +65,7 @@ function buildOidcConfig() {
       automaticSilentRenew: false, // Always disabled when login is disabled
       revokeAccessTokenOnSignout: oidc?.revokeAccessTokenOnSignout || false,
       onSignIn: async () => {
-        window.history.replaceState(null, "", "/login");
+        window.history.replaceState(null, "", `${process.env.PUBLIC_URL || ""}/login`);
       },
     };
   }
@@ -97,7 +97,7 @@ function buildOidcConfig() {
   // OIDC configuration passed to AuthProvider, always built from config.json
   return {
     onSignIn: async () => {
-      window.history.replaceState(null, "", "/login");
+      window.history.replaceState(null, "", `${process.env.PUBLIC_URL || ""}/login`);
     },
     authority: oidc.authority,
     clientId: clientId || oidc.clientId,

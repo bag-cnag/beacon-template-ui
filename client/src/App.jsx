@@ -77,7 +77,7 @@ export default function App() {
 
   return (
     <SelectedEntryProvider>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL || ""}>
         <Box
           sx={{
             backgroundColor: "#F5F5F5",
