@@ -1,6 +1,6 @@
 {
-  "beaconType": "networkBeacon",
-  "apiUrl": "https://impact-beacon-network-backend-demo.ega-archive.org/beacon-network/v2.0.0",
+  "beaconType": "singleBeacon",
+  "apiUrl": "http://localhost:5002/api",
   "assemblyId": ["GRCh38", "GRCh37", "NCBI36"],
   "variationType": [
     { "jsonName": "SNP", "displayName": "SNP" },
@@ -62,12 +62,14 @@
     "auth": {
       "providerType": "private",
       "oidc": {
-        "authority": "https://login.aai.lifescience-ri.eu/oidc",
+        "authority": "https://sso.gpap.cnag.eu/realms/playground",
+        "clientId": "beacon2",
+        "clientSecret": "2901f146-017d-4ac9-945e-262e50568fd1",
         "autoSignIn": false,
         "responseType": "code",
         "automaticSilentRenew": true,
         "redirectUri": "http://localhost:3000/",
-        "scope": "openid profile email ga4gh_passport_v1 offline_access",
+        "scope": "openid profile email",
         "revokeAccessTokenOnSignout": true
       }
     },
@@ -223,10 +225,10 @@
     "genomicQueries": {
       "genomicQueryTypes": {
         "sequenceQuery": true,
-        "geneId": true,
-        "rangeQuery": true,
-        "bracketQuery": true,
-        "hgvsQuery": true
+        "geneId": false,
+        "rangeQuery": false,
+        "bracketQuery": false,
+        "hgvsQuery": false
       },
       "genomicQueryBuilder": {
         "showAlternateBases": true,

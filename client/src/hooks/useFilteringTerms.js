@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import config from "../config/config.json";
+import { getConfig } from "../lib/config";
+
+const config = getConfig();
 import { useSelectedEntry } from "../components/context/SelectedEntryContext";
 
 // Custom hook to fetch filtering terms from the Beacon API

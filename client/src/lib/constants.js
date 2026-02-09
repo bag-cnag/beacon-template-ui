@@ -1,6 +1,8 @@
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import { Box, Tooltip } from "@mui/material";
-import config from "../config/config.json";
+import { getConfig } from "./config";
+
+const config = getConfig();
 
 const primaryColor = config.ui.colors.primary;
 

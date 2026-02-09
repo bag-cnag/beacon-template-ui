@@ -6,7 +6,9 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
-import config from "../config/config.json";
+import { getConfig } from "../lib/config";
+
+const config = getConfig();
 import { darken, lighten } from "@mui/system";
 import { useSelectedEntry } from "./context/SelectedEntryContext";
 import GenomicQueryBuilderButton from "./genomic/GenomicQueryBuilderButton";
