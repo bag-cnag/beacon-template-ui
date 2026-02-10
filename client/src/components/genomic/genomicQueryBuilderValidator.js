@@ -1,5 +1,7 @@
 import * as Yup from "yup";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 
 // Yup base pattern for Ref/Alt bases — allows IUPAC codes (excluding U), '.' and '-'
 export const basePattern = /^[ACGTRYSWKMBDHVN.\-]+$/;

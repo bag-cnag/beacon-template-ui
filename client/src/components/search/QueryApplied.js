@@ -1,8 +1,10 @@
 import { Box, Typography, Button } from "@mui/material";
 import { useSelectedEntry } from "../context/SelectedEntryContext";
 import QueryAppliedItems from "./QueryAppliedItems";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
 import deleteIcon from "../../assets/logos/delete.svg";
+
+const config = getConfig();
 
 // This component shows a summary of filters the user has applied.
 // It allows them to remove individual filters or clear all at once.

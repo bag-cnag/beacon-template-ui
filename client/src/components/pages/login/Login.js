@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useAuthSafe as useAuth } from "../login/useAuthSafe";
 import { CircularProgress, Box, Typography } from "@mui/material";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 
 export default function Login() {
   // Safe useAuth(), this returns real auth when login is enabled, null otherwise

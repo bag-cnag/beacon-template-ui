@@ -1,4 +1,6 @@
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 
 /**
  * Exports either:

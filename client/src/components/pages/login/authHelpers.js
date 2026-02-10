@@ -1,4 +1,6 @@
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 
 /**
  * Helper to check if login is enabled in the configuration file.

@@ -2,7 +2,9 @@ import { Box, Typography, Button } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Founders from "../../Founders";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import contactSuccessImg from "../../../assets/logos/contact-success.svg";
 
 /**

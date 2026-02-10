@@ -1,4 +1,4 @@
-import config from "../../../src/config/config.json";
+import config from "../../../src/config/config.example.json";
 
 describe("Navbar (config-driven + auth)", () => {
   // Real key used by oidc-react given your authority and clientId

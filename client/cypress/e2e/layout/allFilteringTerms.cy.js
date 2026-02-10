@@ -4,7 +4,7 @@
 // It verifies that the button changes style when clicked
 // and that the Filtering Terms table renders with the expected headers.
 
-import config from "../../../src/config/config.json";
+import config from "../../../src/config/config.example.json";
 
 describe("All Filtering Terms button behavior", () => {
   const primaryDarkColor = config.ui.colors.darkPrimary;

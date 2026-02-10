@@ -3,7 +3,9 @@ import { Box, Typography, TablePagination } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import ResultsTableModalBody from "./ResultsTableModalBody";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import CloseIcon from "@mui/icons-material/Close";
 import { InputAdornment, IconButton } from "@mui/material";
 import { useSelectedEntry } from "../../context/SelectedEntryContext";

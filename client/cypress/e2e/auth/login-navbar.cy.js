@@ -1,4 +1,4 @@
-import config from "../../../src/config/config.json";
+import config from "../../../src/config/config.example.json";
 
 // This test tests the login access via the login button in the navbar
 

@@ -1,5 +1,7 @@
 import { Typography, Box, Radio } from "@mui/material";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import { alpha } from "@mui/material/styles";
 
 /*

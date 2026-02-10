@@ -1,7 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useFormikContext } from "formik";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import GenomicInputBox from "../GenomicInputBox";
 import { mainBoxTypography } from "../styling/genomicInputBoxStyling";
 import { normalizeVariationType } from "../../genomic/utils/variationType";

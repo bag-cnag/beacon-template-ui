@@ -16,7 +16,9 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { lighten } from "@mui/material/styles";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import { useSelectedEntry } from "../context/SelectedEntryContext";
 import Loader from "../common/Loader";
 import CommonMessage, { COMMON_MESSAGES } from "../common/CommonMessage";

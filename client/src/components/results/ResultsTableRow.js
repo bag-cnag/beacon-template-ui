@@ -13,7 +13,9 @@ import {
 import { BEACON_NETWORK_COLUMNS_EXPANDED } from "../../lib/constants";
 import CalendarViewMonthIcon from "@mui/icons-material/CalendarViewMonth";
 import { useSelectedEntry } from "../context/SelectedEntryContext";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import { lighten } from "@mui/system";
 import { getDatasetType } from "./utils/beaconType";
 

@@ -13,7 +13,9 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import DownloadForOfflineRoundedIcon from "@mui/icons-material/DownloadForOfflineRounded";
 import ViewWeekRoundedIcon from "@mui/icons-material/ViewWeekRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import { useSelectedEntry } from "../../../components/context/SelectedEntryContext";
 
 /**

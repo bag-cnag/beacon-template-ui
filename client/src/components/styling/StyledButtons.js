@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import PropTypes from "prop-types";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
 import { lighten } from "@mui/system";
 import { alpha } from "@mui/material/styles";
 
@@ -89,7 +89,8 @@ export default function StyledButtons({
   );
 }
 
-// Colors from config and utilities
+// Colors from runtime config (window.config or fallback)
+const config = getConfig();
 const primaryColor = config.ui.colors.primary;
 const unselectedBorderColor = alpha(primaryColor, 0.15); // Light border for non-selected buttons
 const selectedBg = alpha(primaryColor, 0.15); // Light background when selected

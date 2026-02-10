@@ -37,7 +37,9 @@ import {
   genomicHGVSshortForm,
   geneId,
 } from "../genomic/genomicQueryBuilderValidator";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 
 // List of all query types shown as options in the UI
 // Used to display the selection buttons and control which form is shown

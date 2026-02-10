@@ -18,7 +18,9 @@ import {
   tableCellClasses,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import ResultsTableModalRow from "./ResultsTableModalRow";
 import { queryBuilder } from "../../search/utils/queryBuilder";
 import ResultsTableToolbar from "./ResultsTableToolbar";

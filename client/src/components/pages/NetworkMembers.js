@@ -10,7 +10,9 @@ import {
 import { Grid } from "@mui/material";
 import { darken } from "@mui/system";
 import { useEffect, useState } from "react";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import Founders from "../Founders";
 
 /**

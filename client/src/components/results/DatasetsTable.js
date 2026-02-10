@@ -12,7 +12,9 @@ import {
   Tooltip,
 } from "@mui/material";
 import { lighten } from "@mui/system";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import { DATASETS_TABLE } from "../../lib/constants";
 import { useSelectedEntry } from "../context/SelectedEntryContext";
 

@@ -1,6 +1,8 @@
 import { Box, Typography, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import Loader from "../common/Loader";
 
 // This is a part of the initial homepage, for network beacons only

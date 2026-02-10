@@ -11,7 +11,9 @@ import SendIcon from "@mui/icons-material/Send";
 import { alpha } from "@mui/material/styles";
 import Founders from "../../Founders";
 import contactValidation from "./contactValidation";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import { useNavigate } from "react-router-dom";
 import FormTextField from "./FormTextField"; // Reusable input wrapper
 import StyledButton from "../../styling/StyledButtons";

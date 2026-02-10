@@ -8,7 +8,9 @@ import {
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useState, useMemo } from "react";
 
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import { useSelectedEntry } from "../context/SelectedEntryContext";
 import CommonMessage, {
   COMMON_MESSAGES,

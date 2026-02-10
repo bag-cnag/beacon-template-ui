@@ -1,6 +1,8 @@
 import { Box, Select, MenuItem, TextField } from "@mui/material";
 import { useFormikContext, useField } from "formik";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 import {
   selectStyle,
   textFieldStyle,

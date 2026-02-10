@@ -1,4 +1,6 @@
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import BeaconNetworkBanner from "./BeaconNetworkBanner";
 import SingleBeaconBanner from "./SingleBeaconBanner";
 import { Box } from "@mui/material";

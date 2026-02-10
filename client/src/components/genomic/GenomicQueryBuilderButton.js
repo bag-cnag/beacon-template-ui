@@ -4,7 +4,9 @@ import { ReactComponent as DnaIcon } from "../../assets/logos/dna.svg";
 import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import { filterLabels } from "../genomic/utils/GenomicFilterLabels";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 
 /**
  * Button that opens the Genomic Query Builder modal.

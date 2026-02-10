@@ -1,6 +1,7 @@
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
 import { alpha } from "@mui/material/styles";
 
+const config = getConfig();
 // Create a lighter version of the primary color for hover effect
 const hoverColor = alpha(config.ui.colors.primary, 0.05);
 

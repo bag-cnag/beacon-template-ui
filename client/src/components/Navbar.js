@@ -13,7 +13,9 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PropTypes from "prop-types";
-import config from "../config/config.json";
+import { getConfig } from "../lib/config";
+
+const config = getConfig();
 import { Link } from "react-router-dom";
 import { useAuthSafe as useAuth } from "../components/pages/login/useAuthSafe";
 

@@ -2,7 +2,9 @@ import StyledButton from "../styling/StyledButtons";
 import { ReactComponent as FilterIcon } from "../../assets/logos/filteringterms.svg";
 import PropTypes from "prop-types";
 import { useSelectedEntry } from "../context/SelectedEntryContext";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 
 // This component renders a reusable styled button labeled "All Filtering Terms".
 // It uses a custom icon (FilterIcon) and relies on a shared StyledButton component.
