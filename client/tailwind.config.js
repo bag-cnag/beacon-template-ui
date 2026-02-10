@@ -1,4 +1,5 @@
-const config = require("./src/config/config.json");
+// Use example config so build never depends on config.json (runtime config is public/config.js)
+const config = require("./src/config/config.example.json");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
