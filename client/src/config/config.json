@@ -1,0 +1,14 @@
+{
+  "beaconType": "singleBeacon",
+  "apiUrl": "http://localhost:5002/api",
+  "assemblyId": ["GRCh38", "GRCh37", "NCBI36"],
+  "variationType": [
+    { "jsonName": "SNP", "displayName": "SNP" },
+    { "jsonName": "DEL", "displayName": "DEL" },
+    { "jsonName": "DUP", "displayName": "DUP" },
+    { "jsonName": "INV", "displayName": "INV" },
+    { "jsonName": "INS", "displayName": "INS" },
+    { "jsonName": "CNV", "displayName": "CNV" },
+    { "jsonName": "BND", "displayName": "BND" }
+  ]
+}
