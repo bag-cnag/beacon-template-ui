@@ -41,7 +41,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { AuthProvider } from "oidc-react";
-import config from "./config/config.json";
+import { getConfig } from "./lib/config";
+
+const config = getConfig();
 import "./index.css";
 
 // Builds the OIDC configuration using settings from config.json

@@ -1,5 +1,7 @@
 import { useAuth } from "oidc-react";
-import config from "../../../config/config.json";
+import { getConfig } from "../../../lib/config";
+
+const config = getConfig();
 
 // If login is enabled → returns the real auth object from oidc-react
 // If login is disabled → returns null

@@ -1,7 +1,9 @@
 import { Typography, Button, Box, Divider } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import ClearIcon from "@mui/icons-material/Clear";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import { capitalize } from "../common/textFormatting";
 import { useEffect, useRef } from "react";
 import { getSelectableScopeStyles } from "../styling/selectableScopeStyles";

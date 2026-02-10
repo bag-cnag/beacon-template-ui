@@ -4,7 +4,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRef, useEffect } from "react";
-import config from "../../config/config.json";
+import { getConfig } from "../../lib/config";
+
+const config = getConfig();
 import CommonMessage, { COMMON_MESSAGES } from "../common/CommonMessage";
 
 // This component renders an input bar for adding free-text genomic queries.
