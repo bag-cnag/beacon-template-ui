@@ -31,7 +31,7 @@ export const queryBuilder = (params = [], entryId) => {
     includeResultsetResponses: "HIT",
     pagination: {
       skip: 0,
-      limit: 100,
+      limit: 10000,
     },
     testMode: false,
     requestedGranularity: "record",
