@@ -1,24 +1,24 @@
 const snpExamples = [
   {
+    key: "GRCh38:2:185544311T>G",
+    id: "GRCh38:2:185544311T>G",
+    label: "GRCh38:2:185544311T>G",
+    type: "genomic",
+    queryParams: {
+      assemblyId: "GRCh38",
+      referenceName: "2",
+      start: [185544311],
+      referenceBases: "T",
+      alternateBases: "G",
+    },
+  },
+  /*{
     key: "TP53",
     id: "TP53",
     label: "TP53",
     type: "genomic",
     field: "geneId",
     queryParams: { geneId: "TP53" },
-  },
-  {
-    key: "GRCh38:17:7661960T>C",
-    id: "GRCh38:17:7661960T>C",
-    label: "GRCh38:17:7661960T>C",
-    type: "genomic",
-    queryParams: {
-      assemblyId: "GRCh38",
-      referenceName: "17",
-      start: [7661960],
-      referenceBases: "T",
-      alternateBases: "C",
-    },
   },
   {
     key: "NC_000017.11:g.43057063G>A",
@@ -28,7 +28,7 @@ const snpExamples = [
     queryParams: {
       genomicAlleleShortForm: "NC_000017.11:g.43057063G>A",
     },
-  },
+  },*/
 ];
 
 const genomicVariantExamples = [
