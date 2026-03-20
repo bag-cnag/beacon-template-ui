@@ -153,7 +153,7 @@ export default function Footer() {
             <img src={cnag} alt="CNAG Logo" style={{ height: 34 }} />
           </MuiLink>
           <MuiLink
-            href="https://www.nasertic.es/"
+            href="https://www.navarrabiomed.es/en/research/projects/nagen-data-ecosistema-de-uso-y-reutilizacion-de-los-datos-genomicos-del-proyecto"
             target="_blank"
             rel="noopener noreferrer"
           >
