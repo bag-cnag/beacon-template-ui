@@ -206,12 +206,12 @@ export default function SingleBeaconBanner() {
                     >
                       <strong>Organization URL:</strong>{" "}
                       <Link
-                        href={beaconInfo.organization?.contactUrl}
+                        href={beaconInfo.organization?.welcomeUrl}
                         target="_blank"
                         rel="noopener"
                         sx={{ color: "#3176B1" }}
                       >
-                        {beaconInfo.organization?.contactUrl?.replace(
+                        {beaconInfo.organization?.welcomeUrl?.replace(
                           "mailto:",
                           ""
                         )}

@@ -8,6 +8,8 @@ import { useAuthSafe as useAuth } from "../components/pages/login/useAuthSafe";
 import maingrey from "../assets/logos/maingrey.svg";
 import crg from "../assets/logos/crg.svg";
 import bsc from "../assets/logos/bsc.svg";
+import cnag from "../assets/logos/cnag_logo.jpeg";
+import nasertic from "../assets/logos/nasertic_logo.png";
 
 /**
  * Footer component
@@ -110,6 +112,52 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             <img src={bsc} alt="BSC Logo" style={{ height: 34 }} />
+          </MuiLink>
+        </Box>
+
+        {/* Implemented by — CNAG and Nasertic logos */}
+        <Box
+          sx={{
+            display: "flex",
+            gap: { xs: 2, md: 3 },
+            "@media (max-width: 1044px) and (min-width: 721px)": {
+              gap: 6,
+            },
+            "@media (max-width: 648px) and (min-width:633px)": {
+              gap: 4,
+            },
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="body2"
+            color="black"
+            sx={{
+              fontSize: {
+                xs: "12px",
+                sm: "14px",
+              },
+              "@media (max-width: 648px) and (min-width:600px)": {
+                fontSize: "12px",
+              },
+            }}
+          >
+            Implemented by:
+          </Typography>
+
+          <MuiLink
+            href="https://www.cnag.eu/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={cnag} alt="CNAG Logo" style={{ height: 34 }} />
+          </MuiLink>
+          <MuiLink
+            href="https://www.navarrabiomed.es/en/research/projects/nagen-data-ecosistema-de-uso-y-reutilizacion-de-los-datos-genomicos-del-proyecto"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={nasertic} alt="Nasertic Logo" style={{ height: 34 }} />
           </MuiLink>
         </Box>
 
